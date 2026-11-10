@@ -1,33 +1,59 @@
 import streamlit as st
 
-st.set_page_config(page_title="Satellite Intelligence Framework", page_icon="🚀", layout="wide")
+st.set_page_config(page_title="NTURN Orbit", page_icon="🛰️", layout="wide")
 
-st.title("🚀 Satellite Intelligence Framework")
-st.caption("Research prototype. Bring your own data or API. Review scientific limitations and plugin security before use.")
+st.title("🛰️ NTURN Orbit")
+st.caption(
+    "Space & Earth Intelligence Research Platform — research prototype. "
+    "Bring your own data or API. Review scientific limitations and plugin security before use."
+)
 
 CARDS = [
-    ("pages/1_Earth_AI.py", "🌍 Earth AI", "Satellite Intelligence",
-     "Data workspace; raster indices are not implemented yet."),
-    ("pages/2_Orbit_AI.py", "🛰️ Orbit AI", "Space Debris Research",
-     "TLE-based orbital research and coarse proximity screening."),
-    ("pages/3_Health_AI.py", "💓 Health AI", "Satellite Telemetry Analysis",
-     "CSV telemetry anomaly analysis; not certified health diagnosis."),
-    ("pages/4_Disaster_AI.py", "🔥 Disaster AI", "Disaster Intelligence",
-     "Data workspace; operational disaster detection is not implemented yet."),
+    (
+        "pages/1_Earth_AI.py",
+        "🌍 Earth AI",
+        "Satellite Intelligence",
+        "CSV/JSON data workspace; satellite raster analysis is not implemented yet.",
+    ),
+    (
+        "pages/2_Orbit_AI.py",
+        "🛰️ Orbit AI",
+        "Space Debris Research",
+        "TLE-based orbital research and coarse proximity screening.",
+    ),
+    (
+        "pages/3_Health_AI.py",
+        "💓 Health AI",
+        "Satellite Telemetry Analysis",
+        "CSV/JSON statistical anomaly analysis; not a certified health diagnosis.",
+    ),
+    (
+        "pages/4_Disaster_AI.py",
+        "🌪️ Disaster AI",
+        "Disaster Intelligence",
+        "CSV/JSON data workspace; operational disaster detection is not implemented yet.",
+    ),
 ]
 
-cols = st.columns(2)
-for i, (path, title, subtitle, desc) in enumerate(CARDS):
-    with cols[i % 2].container(border=True):
+columns = st.columns(2)
+for index, (path, title, subtitle, description) in enumerate(CARDS):
+    with columns[index % 2].container(border=True):
         st.subheader(title)
         st.markdown(f"**{subtitle}**")
-        st.write(desc)
+        st.write(description)
         st.page_link(path, label="Open module", icon="➡️")
 
 st.divider()
-st.markdown("""
-**How it works**
-1. Open a module.
-2. Choose a data source: built-in live data, your own file (CSV / JSON / TLE), or any API with your own key.
-3. Analyse. Local plugins run as Python code with app permissions; only use trusted files.
-""")
+st.markdown(
+    """
+    **How it works**
+
+    1. Open a module.
+    2. Choose a source: built-in public data, your own CSV/JSON/TLE file, or a public API.
+    3. Analyse the data. Local plugins execute Python code with the app's permissions;
+       only use plugins you wrote or have reviewed and trust.
+
+    **Research prototype notice:** Results are exploratory and must not be used alone
+    for spacecraft operations, collision avoidance, emergency response, or public-safety decisions.
+    """
+)
